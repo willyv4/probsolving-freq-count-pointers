@@ -34,30 +34,43 @@
 // while lef <= arr.length - 1 terminate
 
 
-function countPairs(arr, target) {
-	let pairCount = 0
-	let left = 0
-	let right = arr.length - 1 
+// function countPairs(arr, target) {
+// 	let pairCount = 0
+// 	let left = 0
+// 	let right = arr.length - 1 
 
-	while (left < arr.length - 1) {
-		const sum = arr[left] + arr[right];
+// 	while (left < arr.length - 1) {
+// 		const sum = arr[left] + arr[right];
 
-    	if (sum === target) pairCount++;
+//     	if (sum === target) pairCount++;
     
-		if (left + 1 === right) {
-      		left++;
-      		right = arr.length - 1;
-    	} else {
-      		right--;
-    	}
+// 		if (left + 1 === right) {
+//       		left++;
+//       		right = arr.length - 1;
+//     	} else {
+//       		right--;
+//     	}
 
-    	if (left >= right) {
-      		left++;
-      		right = arr.length - 1;
-    	}
-	}
+//     	if (left >= right) {
+//       		left++;
+//       		right = arr.length - 1;
+//     	}
+// 	}
 
-	return pairCount
+// 	return pairCount
+// }
+
+function countPairs(arr, target) {
+  let pairCount = 0;
+  const seenNumbers = new Set();
+
+  for (let num of arr) {
+    const complement = target - num;
+    if (seenNumbers.has(complement)) pairCount++;
+    seenNumbers.add(num);
+  }
+
+  return pairCount;
 }
 
 
